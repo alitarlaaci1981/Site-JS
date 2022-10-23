@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> LastSamurai.Net | Javascript lessons</title>
+</head>
+<style>
+    body {
+        color: #fff;
+        background: #573334;
+    }
+
+    #game {
+        width: 400px;
+        background: #222222;
+        padding: 18px;
+        text-align: center;
+        margin: auto;
+    }
+
+    h1 {
+        margin: 0 0 18px 0;
+        border: solid 1px #fff;
+        padding: 5px;
+        font-weight: 400;
+    }
+
+    span {
+        font-size: 125%;
+        padding: 12px;
+
+    }
+
+    #result {
+        width: 90px;
+    }
+
+    #answer {
+        margin-top: 10px;
+        padding: 5px;
+        border: none;
+        width: 100px;
+        background: #565613;
+        color: #fff;
+    }
+
+    #answer hover {
+        background: #0C5F17;
+    }
+
+    #True,
+    #False {
+        font-size: 150%;
+        margin-top: 10px;
+        padding: 10px;
+        display: inline-block;
+
+    }
+
+    #True {
+        background-color: #1C9605;
+
+    }
+
+    #False {
+        background-color: #BD0C0C;
+
+    }
+</style>
+
+<body>
+
+    <div id="game">
+        <h1>My First Game</h1>
+        <span id="Number1">0</span>
+        <span id="Operator">*</span>
+        <span id="Number2">0</span>
+        <span>=</span>
+        <input type="text" id="result">
+        <input type="button" id="answer" value="Cevapla">
+        <div style="clear: both;"></div>
+        <div id="True">0</div>
+        <div id="False">0</div>
+        <div style="clear:both"></div>
+
+    </div>
+
+
+    <script>
+        //bildirimler yapiliyor
+        var Number1, Number2, Operator, result, answer, True = 0, False = 0;
+        //Html nesnelerine ulasma
+        Number1 = document.getElementById('Number1');
+        Number2 = document.getElementById('Number2');
+        Operator = document.getElementById('Operator');
+        result = document.getElementById('result');
+        answer = document.getElementById('answer');
+        True = document.getElementById('True');
+        False = document.getElementById('False');
+
+        //rastgele sayi uretme fonksiyonu
+        function RandomNumber(min, max) {
+            var number = Math.floor(Math.random() * (max - min)) + min;
+            return number;
+
+        }
+        //Oyun baslangicincda veya soru tahmini sonrasi yeni soru olsuturma fonksiyonu
+        function newQuestion() {
+            var operation = ["+", "-", "*", "/"];
+            Operator.textContent = operation[RandomNumber(0, 4)];//operator secimi
+            Number1.textContent = RandomNumber(0, 50)
+            Number2.textContent = RandomNumber(0, 50)
+
+            if (Operator.textContent == "/") {
+                while (true) {
+                    Number2.textContent = RandomNumber(0, 50)
+                    if (Number1.textContent % Number2.textContent == 0) {
+                        break;
+
+                    }
+
+                }
+
+            }
+        }
+        window.onload=function(){
+            newQuestion();
+        }
+        answer.onclick=function(){
+            var ans,n1,n2;
+            n1=Number(Number1.textContent);
+            n2=Number(Number2.textContent);
+            switch(Operator.textContent){
+                case '+':ans=n1+n2; break;
+                case '-':ans=n1-n2; break;
+                case '*':ans=n1*n2; break;
+                case '/':ans=n1/n2; break;
+                default:break;
+                
+            }
+            if(result.value==ans){
+                True.textContent=Number(True.textContent)+1
+
+            }else{
+                False.textContent=Number(False.textContent)+1
+
+            }
+            newQuestion();
+        }
+
+
+    </script>
+</body>
+
+</html>

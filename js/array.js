@@ -1,0 +1,18 @@
+var langs = [
+    "PHP",
+    "Asp.net",
+    "JSP",
+    "coldFusion",
+    "Node JS",
+    "Java",
+    "C Sharp",
+    "JavaScript",
+    "Angular JS",
+    "React JS",
+    "Vue JS",
+    "MSSQL",
+    "MySQL",
+    "Bootstrapt4",
+    "CSS3",
+    "HTML5",
+];
