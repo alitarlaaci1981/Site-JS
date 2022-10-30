@@ -9,11 +9,8 @@ const items =[
     
 ];
 
-const itemNames=items.map((item)=>{
-    return item.price
-})
-//console.log(items)
-console.table(itemNames);
-
-// const lastitem=itemNames[itemNames.length-1];
-// console.log(lastitem)
+const total=items.reduce((currrenTotal,item)=>{
+    return item.price+=currrenTotal
+   
+},0)
+console.log(total);
